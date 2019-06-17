@@ -1,10 +1,12 @@
 "use strict";
 
+import Search from "./src/views/Search";
+
 const e = React.createElement;
 
 class App extends React.Component {
   render() {
-    return <h1>App.js</h1>;
+    return <Search />;
   }
 }
 
