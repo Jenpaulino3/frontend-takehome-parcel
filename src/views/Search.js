@@ -7,7 +7,7 @@ class Search extends Component {
     return (
       <div>
         <h1>Search for Ruby Gems</h1>
-        <p>Save Gems and View Favorites</p>
+        <p>Save your favorite gems to view them later</p>
         <SearchBar />
       </div>
     );
