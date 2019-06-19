@@ -6,8 +6,10 @@ class Search extends Component {
   render() {
     return (
       <div>
-        <h1>Search for Ruby Gems</h1>
-        <p>Save your favorite gems to view them later</p>
+        <h1>Search for RubyGems</h1>
+        <h2>
+          Enter and search for Ruby Gems, save/unsave, and view saved gems.
+        </h2>
         <SearchBar />
       </div>
     );
