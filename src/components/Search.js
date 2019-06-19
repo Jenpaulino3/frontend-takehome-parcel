@@ -3,7 +3,20 @@ import SearchBar from "./SearchBar";
 import Favorites from "./Favorites";
 
 class Search extends Component {
-  state = {};
+  state = {
+    savedGems: []
+  };
+
+  fetchSavedGems = (gem, gemIsSaved) => {
+    gemIsSaved === true
+      ? this.setState({
+          savedGems: [...this.state.savedGems, gem]
+        })
+      : this.setState({
+          savedGems: this.state.savedGems.filter(savedGem => savedGem !== gem)
+        });
+  };
+
   render() {
     return (
       <div>
@@ -12,7 +25,7 @@ class Search extends Component {
           Enter and search for Ruby Gems, save/unsave, and view saved gems.
         </h2>
         <Favorites />
-        <SearchBar />
+        <SearchBar fetchSavedGems={this.fetchSavedGems} />
       </div>
     );
   }

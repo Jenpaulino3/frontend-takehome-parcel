@@ -5,8 +5,7 @@ class SearchBar extends Component {
     value: "",
     error: null,
     isSearching: false,
-    gems: [],
-    savedGems: []
+    gems: []
   };
 
   handleChange = event => {
@@ -33,16 +32,6 @@ class SearchBar extends Component {
         }
       );
     event.preventDefault();
-  };
-
-  fetchSavedGems = (gem, gemIsSaved) => {
-    gemIsSaved === true
-      ? this.setState({
-          savedGems: [...this.state.savedGems, gem]
-        })
-      : this.setState({
-          savedGems: this.state.savedGems.filter(savedGem => savedGem !== gem)
-        });
   };
 
   render() {
@@ -75,7 +64,7 @@ class SearchBar extends Component {
                   key={index}
                   className={gem.name}
                   gem={gem}
-                  fetchSavedGems={this.fetchSavedGems}
+                  fetchSavedGems={this.props.fetchSavedGems}
                 />
               );
             })}
