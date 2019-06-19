@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-
+import Result from "./Result";
 class SearchBar extends Component {
   state = {
     value: "",
     searchQuery: "",
     error: null,
     isSearching: false,
-    items: []
+    gems: []
   };
 
   handleChange = event => {
@@ -16,13 +16,13 @@ class SearchBar extends Component {
   };
 
   handleSubmit = event => {
-    fetch("http://localhost:3000/api/v1/search.json?query=rails")
+    fetch(`http://localhost:3000/api/v1/search.json?query=${this.state.value}`)
       .then(res => res.json())
       .then(
         result => {
           this.setState({
             isSearching: true,
-            items: result
+            gems: result
           });
         },
         error => {
@@ -36,30 +36,9 @@ class SearchBar extends Component {
   };
 
   render() {
-    const { error, isSearching, items } = this.state;
+    const { error, gems } = this.state;
     if (error) {
-      return <div>Error: {error.message}</div>;
-    } else if (!isSearching) {
-      return (
-        <div>
-          <form className="search-form" onSubmit={this.handleSubmit}>
-            <label className="visuallyhidden" id="search">
-              Search{" "}
-            </label>
-            <input
-              type="text"
-              value={this.state.value}
-              onChange={this.handleChange}
-              placeholder="Search..."
-              id="search"
-              name="search"
-            />
-            <button type="submit" value="submit">
-              <i className="fa fa-search" />
-            </button>
-          </form>
-        </div>
-      );
+      return <div className="error-message">Error: {error.message}</div>;
     } else {
       return (
         <div className="search-and-results">
@@ -79,10 +58,9 @@ class SearchBar extends Component {
               <i className="fa fa-search" />
             </button>
           </form>
-          <p>Items</p>
           <div className="results">
-            {items.map(item => {
-              return <p key={item.sha}>{item.name}</p>;
+            {gems.map((gem, index) => {
+              return <Result key={index} className={gem.name} gem={gem} />;
             })}
           </div>
         </div>

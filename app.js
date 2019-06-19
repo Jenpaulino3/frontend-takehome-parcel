@@ -1,6 +1,6 @@
 "use strict";
 
-import Search from "./src/views/Search";
+import Search from "./src/components/Search";
 
 const e = React.createElement;
 
