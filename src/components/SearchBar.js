@@ -3,10 +3,10 @@ import Result from "./Result";
 class SearchBar extends Component {
   state = {
     value: "",
-    searchQuery: "",
     error: null,
     isSearching: false,
-    gems: []
+    gems: [],
+    savedGems: []
   };
 
   handleChange = event => {
