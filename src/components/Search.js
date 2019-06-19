@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
+import Favorites from "./Favorites";
 
 class Search extends Component {
+  state = {};
   render() {
     return (
       <div>
@@ -9,6 +11,7 @@ class Search extends Component {
         <h2>
           Enter and search for Ruby Gems, save/unsave, and view saved gems.
         </h2>
+        <Favorites />
         <SearchBar />
       </div>
     );

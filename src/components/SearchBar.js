@@ -5,8 +5,7 @@ class SearchBar extends Component {
     value: "",
     error: null,
     isSearching: false,
-    gems: [],
-    savedGems: []
+    gems: []
   };
 
   handleChange = event => {

@@ -2,27 +2,32 @@ import React, { Component } from "react";
 
 class Result extends Component {
   state = {
-    savedGem: false
+    gemIsSaved: false,
+    savedGems: []
   };
 
   onButtonClick = () => {
-    this.state.savedGem === false
+    this.state.gemIsSaved === false
       ? this.setState({
-          savedGem: true
+          gemIsSaved: true,
+          savedGems: [...this.state.savedGems, this.props.gem]
         })
       : this.setState({
-          savedGem: false
+          gemIsSaved: false,
+          savedGems: this.state.savedGems.filter(
+            savedGem => savedGem !== this.props.gem
+          )
         });
   };
 
   render() {
-    const { savedGem } = this.state;
+    const { gemIsSaved } = this.state;
     const { gem } = this.props;
     return (
       <div className="result flex align-center">
         <p>{gem.name}</p>
         <button onClick={this.onButtonClick}>
-          {!savedGem ? "Save" : "Unsave"}
+          {!gemIsSaved ? "Save" : "Unsave"}
         </button>
       </div>
     );
