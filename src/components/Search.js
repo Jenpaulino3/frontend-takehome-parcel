@@ -24,7 +24,11 @@ class Search extends Component {
         <h2>
           Enter and search for Ruby Gems, save/unsave, and view saved gems.
         </h2>
-        <Favorites />
+        <Favorites
+          savedGems={this.state.savedGems.map(savedGem => {
+            return savedGem;
+          })}
+        />
         <SearchBar fetchSavedGems={this.fetchSavedGems} />
       </div>
     );
