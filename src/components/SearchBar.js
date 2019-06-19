@@ -5,7 +5,8 @@ class SearchBar extends Component {
     value: "",
     error: null,
     isSearching: false,
-    gems: []
+    gems: [],
+    savedGems: []
   };
 
   handleChange = event => {
@@ -34,6 +35,16 @@ class SearchBar extends Component {
     event.preventDefault();
   };
 
+  fetchSavedGems = (gem, gemIsSaved) => {
+    gemIsSaved === true
+      ? this.setState({
+          savedGems: [...this.state.savedGems, gem]
+        })
+      : this.setState({
+          savedGems: this.state.savedGems.filter(savedGem => savedGem !== gem)
+        });
+  };
+
   render() {
     const { error, gems } = this.state;
     if (error) {
@@ -59,7 +70,14 @@ class SearchBar extends Component {
           </form>
           <div className="results">
             {gems.map((gem, index) => {
-              return <Result key={index} className={gem.name} gem={gem} />;
+              return (
+                <Result
+                  key={index}
+                  className={gem.name}
+                  gem={gem}
+                  fetchSavedGems={this.fetchSavedGems}
+                />
+              );
             })}
           </div>
         </div>
