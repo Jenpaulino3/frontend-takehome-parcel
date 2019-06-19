@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SearchBar from "./SearchBar";
 import Favorites from "./Favorites";
+import { stringify } from "querystring";
 
 class Search extends Component {
   state = {
@@ -8,14 +9,23 @@ class Search extends Component {
   };
 
   fetchSavedGems = (gem, gemIsSaved) => {
-    gemIsSaved === true
-      ? this.setState({
-          savedGems: [...this.state.savedGems, gem]
-        })
-      : this.setState({
-          savedGems: this.state.savedGems.filter(savedGem => savedGem !== gem)
-        });
+    if (gemIsSaved === true) {
+      this.setState({
+        savedGems: [...this.state.savedGems, gem]
+      });
+    } else {
+      this.setState({
+        savedGems: this.state.savedGems.filter(savedGem => savedGem !== gem)
+      });
+    }
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    // localStorage.setItem(
+    //   "savedGems",
+    //   this.state.savedGems.map(savedGem => savedGem.name)
+    // );
+  }
 
   render() {
     return (
@@ -26,7 +36,7 @@ class Search extends Component {
         </h2>
         <Favorites
           savedGems={this.state.savedGems.map(savedGem => {
-            return savedGem;
+            return savedGem.name;
           })}
         />
         <SearchBar fetchSavedGems={this.fetchSavedGems} />

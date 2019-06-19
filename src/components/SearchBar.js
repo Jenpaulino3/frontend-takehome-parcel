@@ -58,10 +58,10 @@ class SearchBar extends Component {
             </button>
           </form>
           <div className="results">
-            {gems.map((gem, index) => {
+            {gems.map(gem => {
               return (
                 <Result
-                  key={index}
+                  key={gem.sha}
                   className={gem.name}
                   gem={gem}
                   fetchSavedGems={this.props.fetchSavedGems}
