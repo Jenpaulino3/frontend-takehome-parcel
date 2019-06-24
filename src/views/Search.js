@@ -5,7 +5,7 @@ import SearchHeadings from "../components/SearchHeadings";
 import logo from "../assets/images/rubyGemsLogo.png";
 import axios from "axios";
 
-class SearchForm extends Component {
+class Search extends Component {
   state = {
     value: "",
     searchResults: [],
@@ -142,7 +142,7 @@ class SearchForm extends Component {
           <img style={logoStyle} src={logo} alt="Logo" />
           <SearchHeadings />
         </div>
-        <p> Save/unsave by selecting the star icon</p>
+        <p>- Save/unsave by selecting the star icon</p>
         <p>- View saved gems</p>
         <p>- Select gem to view its Github documentation</p>
         <form style={formStyle} onSubmit={this.handleSubmit}>
@@ -174,4 +174,4 @@ class SearchForm extends Component {
   }
 }
 
-export default SearchForm;
+export default Search;
